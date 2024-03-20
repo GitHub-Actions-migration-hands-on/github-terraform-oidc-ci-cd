@@ -41,7 +41,7 @@ This sample includes the following features:
 
 ### Service Principal or Managed Identity
 
-There are two approaches shown in the code for federating GitHub and Azure. The preferred method is to use a User Assigned Managed Identity since this does not require elevated permissions in Azure Active Directory and has a longer token timeout. However the code also shows the Service Principal approach for those that prefer that method. If you choose the Service Principal approach then the account creating the infrastructure will need permission to create Applications in Azure Active Directory.
+There are two approaches shown in the code for federating GitHub and Azure. The preferred method is to use a User Assigned Managed Identity since this does not require elevated permissions in Microsoft Entra ID and has a longer token timeout. However the code also shows the Service Principal approach for those that prefer that method. If you choose the Service Principal approach then the account creating the infrastructure will need permission to create Applications in Microsoft Entra ID.
 
 ## Getting Started
 
@@ -92,7 +92,7 @@ prefix = "JFH-20221208"
 github_organisation_target = "my-organization"
 ```
 
-> NOTE if you wish to use the Azure Active Directory Service Principal approach rather than a User Assigned Managed Identity, then also add this setting to `terraform.tfvars`:
+> NOTE if you wish to use the Microsoft Entra ID Service Principal approach rather than a User Assigned Managed Identity, then also add this setting to `terraform.tfvars`:
 
 ```
 use_managed_identity = false
@@ -102,6 +102,7 @@ use_managed_identity = false
 
 1. Open the Visual Studio Code Terminal and navigate the `terraform-oidc-config` folder.
 1. Run `az login` and follow the prompts to login to Azure with your Global Administrator account.
+1. Run `terraform init`.
 1. Run `terraform apply`.
 1. You'll be prompted for the variable `var.github_token`. Paste in the PAT you generated earlier and hit enter.
 1. The plan will complete. Review the plan and see what is going to be created.
@@ -129,7 +130,7 @@ When deploying the example you will have selected to use the default Managed Ide
 ##### Option 2: Service Principal
 
 1. Login to the [Azure Portal](https://portal.azure.com) with your Global Administrator account.
-1. Navigate to `Azure Active Directory` and select `App registrations`.
+1. Navigate to `Microsoft Entra ID` and select `App registrations`.
 1. Select `All applications`, then find the one you just created post-fixed with `dev` (e.g. `JFH-20221208-dev`).
 1. Select `Certificate & secrets`, then `Federated credentials`.
 1. There should only be one credential in the list, select that and take a look at the configuration.
