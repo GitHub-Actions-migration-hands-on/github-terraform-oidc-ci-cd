@@ -1,0 +1,28 @@
+{
+    "name": "Azure & Terraform",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "github.vscode-github-actions",
+                "hashicorp.terraform",
+                "redhat.vscode-yaml",
+                "ms-vscode.azurecli"
+            ]
+        }
+    },
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "vscode",
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:latest": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/terraform:1": {}
+    },
+    // Avoid "fatal: detected dubious ownership in repository at `***`..."
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
